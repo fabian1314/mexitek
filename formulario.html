@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contacto - MEXItek</title>
+    <style>
+        :root {
+            --azul-oscuro: #002B5B;
+            --azul-medio: #0066CC;
+            --azul-claro: #E3F2FD;
+            --gris-claro: #f5f5f5;
+            --gris-oscuro: #333;
+            --blanco: #fff;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--gris-claro);
+            background-image: url('https://images.unsplash.com/photo-1581091012184-7c213c2b3925?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--blanco);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 15px;
+        }
+
+        .form-container {
+            background-color: rgba(0, 43, 91, 0.9);
+            padding: 40px 35px;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--blanco);
+            text-align: center;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 3px #000;
+            font-weight: 700;
+        }
+
+        p.lead {
+            text-align: center;
+            font-size: 1.15rem;
+            margin-bottom: 30px;
+            color: var(--blanco);
+            text-shadow: 1px 1px 2px #000;
+            font-weight: 500;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 6px;
+            color: var(--azul-claro);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="time"],
+        select,
+        textarea,
+        input[type="file"] {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            border: none;
+            box-sizing: border-box;
+            transition: box-shadow 0.3s ease;
+            background-color: var(--blanco);
+            color: var(--gris-oscuro);
+            font-weight: 500;
+        }
+
+            input[type="text"]:focus,
+            input[type="email"]:focus,
+            input[type="tel"]:focus,
+            input[type="date"]:focus,
+            input[type="time"]:focus,
+            select:focus,
+            textarea:focus,
+            input[type="file"]:focus {
+                outline: none;
+                box-shadow: 0 0 8px var(--azul-medio);
+            }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+            /* Radio buttons group */
+            .form-group.radio-group {
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+            }
+
+                .form-group.radio-group label {
+                    font-weight: normal;
+                    color: var(--azul-claro);
+                    margin: 0 10px 0 4px;
+                    cursor: pointer;
+                }
+
+        input[type="radio"] {
+            cursor: pointer;
+            accent-color: var(--azul-medio);
+        }
+
+        /* Submit and Reset buttons */
+        .form-buttons {
+            display: flex;
+            gap: 4%;
+            flex-wrap: wrap;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            border: none;
+            padding: 14px 25px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            width: 48%;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"] {
+            background-color: var(--azul-medio);
+            color: var(--blanco);
+        }
+
+            input[type="submit"]:hover {
+                background-color: #004999;
+            }
+
+        input[type="reset"] {
+            background-color: #6c757d;
+            color: var(--blanco);
+        }
+
+            input[type="reset"]:hover {
+                background-color: #5a6268;
+            }
+
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 25px 20px;
+            }
+
+            input[type="submit"],
+            input[type="reset"] {
+                width: 100%;
+            }
+
+            .form-group.radio-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container" role="main">
+        <h1>Formulario de Contacto - MEXItek</h1>
+        <p class="lead">En MEXItek te ofrecemos soluciones tecnológicas confiables y accesibles. Déjanos tus datos y te contactaremos lo antes posible.</p>
+        <form method="post" action="https://mexitek.com/contacto" enctype="multipart/form-data" novalidate>
+            <!-- Nombre Completo -->
+            <div class="form-group">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Ingresa tu nombre completo" autocomplete="name" />
+            </div>
+
+            <!-- Correo Electrónico -->
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com" autocomplete="email" />
+            </div>
+
+            <!-- Teléfono -->
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" required placeholder="(###) ###-####" pattern="\(\d{3}\) \d{3}-\d{4}" autocomplete="tel" />
+            </div>
+
+            <!-- Tipo de Servicio -->
+            <div class="form-group">
+                <label for="servicio">Tipo de Servicio:</label>
+                <select id="servicio" name="servicio" required>
+                    <option value="" disabled selected>Seleccione una opción</option>
+                    <option value="reparacion">Reparación de Celular</option>
+                    <option value="venta">Compra de Accesorios</option>
+                    <option value="diagnostico">Diagnóstico de Equipo</option>
+                    <option value="otros">Otros</option>
+                </select>
+            </div>
+
+            <!-- Fecha de Visita -->
+            <div class="form-group">
+                <label for="fecha_visita">Fecha de Visita:</label>
+                <input type="date" id="fecha_visita" name="fecha_visita" required />
+            </div>
+
+            <!-- Hora Preferida -->
+            <div class="form-group">
+                <label for="hora_preferida">Hora Preferida:</label>
+                <input type="time" id="hora_preferida" name="hora_preferida" required />
+            </div>
+
+            <!-- Modelo del Dispositivo -->
+            <div class="form-group">
+                <label for="modelo">Modelo del Dispositivo:</label>
+                <input type="text" id="modelo" name="modelo" required placeholder="Ej: iPhone 12, Samsung A52" />
+            </div>
+
+            <!-- Descripción del Problema -->
+            <div class="form-group">
+                <label for="mensaje">Descripción del Problema:</label>
+                <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Escribe aquí los detalles del problema"></textarea>
+            </div>
+
+            <!-- Adjuntar Imagen -->
+            <div class="form-group">
+                <label for="imagen_problema">Adjuntar Imagen (opcional):</label>
+                <input type="file" id="imagen_problema" name="imagen_problema" accept="image/*" />
+            </div>
+
+            <!-- Preferencia de Contacto -->
+            <div class="form-group radio-group" role="radiogroup" aria-labelledby="contact-preference-label">
+                <label id="contact-preference-label" style="font-weight: 600; color: var(--azul-claro);">Preferencia de Contacto:</label>
+                <input type="radio" id="email_contacto" name="contacto" value="email" checked />
+                <label for="email_contacto">Email</label>
+                <input type="radio" id="telefono_contacto" name="contacto" value="telefono" />
+                <label for="telefono_contacto">Teléfono</label>
+                <input type="radio" id="whatsapp_contacto" name="contacto" value="whatsapp" />
+                <label for="whatsapp_contacto">WhatsApp</label>
+            </div>
+
+            <!-- Botones -->
+            <div class="form-buttons">
+                <input type="submit" value="Enviar" />
+                <input type="reset" value="Borrar" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

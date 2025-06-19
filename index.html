@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MEXItek</title>
+    <style>
+        :root {
+            --color-primario: #005f73;
+            --color-secundario: #0a9396;
+            --fondo: #f0f4f8;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--fondo);
+        }
+
+        header {
+            background: var(--color-primario);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: var(--color-secundario);
+            flex-wrap: wrap;
+        }
+
+            nav button {
+                padding: 15px 20px;
+                border: none;
+                background: none;
+                color: white;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background 0.3s;
+            }
+
+                nav button:hover,
+                nav button.active {
+                    background: #007c91;
+                }
+
+        iframe {
+            width: 100%;
+            height: 85vh;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MEXItek | Tecnología y Reparación</h1>
+        <p>Tu tienda de confianza en Tenango del Valle, Edomex</p>
+    </header>
+
+    <nav>
+        <button onclick="cargar('inicio.html', this)" class="active">Inicio</button>
+        <button onclick="cargar('formulario.html', this)">Formulario</button>
+        <button onclick="cargar('arreglo.html', this)">Arreglo</button>
+        <button onclick="cargar('slider.html', this)">Slider</button>
+        <button onclick="cargar('encuesta.html', this)">Encuesta</button>
+        <button onclick="cargar('contacto.html', this)">Contacto</button>
+    </nav>
+
+    <iframe id="contenido" src="inicio.html"></iframe>
+
+    <script>
+        function cargar(pagina, boton) {
+            document.getElementById('contenido').src = pagina;
+
+            // Quitar clase "active" de todos los botones
+            const botones = document.querySelectorAll('nav button');
+            botones.forEach(btn => btn.classList.remove('active'));
+
+            // Agregar clase "active" al botón actual
+            boton.classList.add('active');
+        }
+    </script>
+</body>
+</html>

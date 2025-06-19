@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inicio | MEXItek</title>
+    <style>
+        :root {
+            --azul-oscuro: #002B5B;
+            --azul-medio: #0066CC;
+            --azul-claro: #E3F2FD;
+            --gris-oscuro: #333;
+            --blanco: #fff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--azul-claro);
+            color: var(--gris-oscuro);
+        }
+
+        header {
+            background-color: var(--azul-oscuro);
+            color: var(--blanco);
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--azul-oscuro);
+            margin-bottom: 30px;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--blanco);
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            background-color: var(--azul-medio);
+            color: var(--blanco);
+            padding: 15px;
+            margin: 0;
+        }
+
+        .card p {
+            padding: 20px;
+            font-size: 1rem;
+            color: var(--gris-oscuro);
+        }
+
+        form {
+            background-color: var(--blanco);
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: var(--azul-medio);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004999;
+        }
+
+        footer {
+            background-color: var(--azul-oscuro);
+            color: var(--blanco);
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <section>
+        <h2>Servicios y Tecnología para Ti</h2>
+
+        <div class="cards-container">
+            <div class="card">
+                <img src="imagenes/producto.webp" alt="Venta de productos tecnológicos">
+                <h3>Venta de Tecnología</h3>
+                <p>Encuentra celulares, bocinas, cargadores, audífonos y más. Productos originales con garantía.</p>
+            </div>
+
+            <div class="card">
+                <img src="imagenes/reparacion.jpg" alt="Reparación de dispositivos">
+                <h3>Reparaciones Profesionales</h3>
+                <p>Servicio técnico confiable: cambio de pantalla, batería, puerto de carga, software y más.</p>
+            </div>
+        </div>
+
+        <form action="guardar.php" method="POST">
+            <h2>Contáctanos</h2>
+            <input type="text" name="nombre" placeholder="Tu nombre" required>
+            <input type="email" name="correo" placeholder="Tu correo electrónico" required>
+            <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje" required></textarea>
+            <button type="submit">Enviar Mensaje</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 MEXItek. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

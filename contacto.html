@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contacto - MEXItek</title>
+    <style>
+        :root {
+            --azul-oscuro: #002B5B;
+            --azul-medio: #0052cc;
+            --azul-claro: #E3F2FD;
+            --gris-oscuro: #33475b;
+            --gris-claro: #f0f5ff;
+            --blanco: #fff;
+            --verde-whatsapp: #25d366;
+            --verde-whatsapp-hover: #128c7e;
+        }
+
+        body {
+            background: var(--gris-claro);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--gris-oscuro);
+            max-width: 600px;
+            margin: 2.5rem auto;
+            padding: 1.5rem 2.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+            border-radius: 14px;
+            user-select: none;
+        }
+
+        h1 {
+            color: var(--azul-medio);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            font-size: 2.2rem;
+        }
+
+        section {
+            background: var(--blanco);
+            padding: 2rem 2.5rem;
+            border-radius: 14px;
+            box-shadow: 0 6px 18px rgba(0,82,204,0.18);
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        p {
+            margin: 1.2rem 0;
+            color: var(--gris-oscuro);
+        }
+
+        strong {
+            color: var(--azul-oscuro);
+            font-weight: 700;
+        }
+
+        a {
+            color: var(--azul-medio);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+            a:hover {
+                color: var(--azul-oscuro);
+                text-decoration: underline;
+            }
+
+        .whatsapp-button {
+            display: inline-block;
+            background: var(--verde-whatsapp);
+            color: white;
+            padding: 0.9rem 1.8rem;
+            border-radius: 30px;
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            user-select: none;
+        }
+
+            .whatsapp-button:hover {
+                background: var(--verde-whatsapp-hover);
+                box-shadow: 0 6px 14px rgba(18, 140, 126, 0.6);
+            }
+    </style>
+</head>
+<body>
+
+    <h1>Contacto MEXItek</h1>
+
+    <section>
+        <p>📍 <strong>Ubicación:</strong> Tenango del Valle, Estado de México</p>
+        <p>📞 <strong>Teléfono:</strong> 55-1234-5678</p>
+        <p>📧 <strong>Email:</strong> <a href="mailto:contacto@mexitek.com">contacto@mexitek.com</a></p>
+        <a class="whatsapp-button" href="https://wa.me/5215512345678" target="_blank" rel="noopener noreferrer" aria-label="Envíanos un WhatsApp">📲 Envíanos un WhatsApp</a>
+    </section>
+
+</body>
+</html>

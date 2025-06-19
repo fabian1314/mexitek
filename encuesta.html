@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Encuesta de Satisfacción - MEXItek</title>
+    <style>
+        :root {
+            --azul-oscuro: #002B5B;
+            --azul-medio: #0052cc;
+            --azul-claro: #E3F2FD;
+            --gris-oscuro: #33475b;
+            --gris-claro: #f9fbff;
+            --blanco: #fff;
+        }
+
+        body {
+            background: var(--gris-claro);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--gris-oscuro);
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            border-radius: 12px;
+        }
+
+        h1 {
+            color: var(--azul-medio);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            user-select: none;
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        form {
+            background: var(--blanco);
+            padding: 1.8rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0,82,204,0.2);
+        }
+
+        .pregunta {
+            margin-bottom: 1.4rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            color: var(--azul-oscuro);
+            font-size: 1.05rem;
+            user-select: none;
+        }
+
+        select {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+            select:focus {
+                border-color: var(--azul-medio);
+                outline: none;
+                background-color: var(--gris-claro);
+            }
+
+        button {
+            width: 100%;
+            background-color: var(--azul-medio);
+            color: var(--blanco);
+            font-weight: 700;
+            border: none;
+            padding: 0.85rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.15rem;
+            transition: background-color 0.3s ease;
+            user-select: none;
+        }
+
+            button:hover {
+                background-color: var(--azul-oscuro);
+            }
+
+        #resultado {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            user-select: none;
+            color: var(--azul-oscuro);
+        }
+
+            #resultado .cara {
+                font-size: 3.5rem;
+                margin-top: 0.5rem;
+                user-select: none;
+            }
+    </style>
+</head>
+<body>
+
+    <h1>Encuesta de Satisfacción MEXItek</h1>
+
+    <form id="encuestaForm">
+        <div class="pregunta">
+            <label for="q1">1. ¿Cómo calificas la calidad de nuestros servicios?</label>
+            <select name="q1" id="q1" required>
+                <option value="">Selecciona</option>
+                <option value="5">Excelente</option>
+                <option value="4">Muy bueno</option>
+                <option value="3">Bueno</option>
+                <option value="2">Regular</option>
+                <option value="1">Malo</option>
+            </select>
+        </div>
+        <div class="pregunta">
+            <label for="q2">2. ¿El tiempo de respuesta fue adecuado?</label>
+            <select name="q2" id="q2" required>
+                <option value="">Selecciona</option>
+                <option value="5">Siempre rápido</option>
+                <option value="4">Rápido</option>
+                <option value="3">Aceptable</option>
+                <option value="2">Lento</option>
+                <option value="1">Muy lento</option>
+            </select>
+        </div>
+        <div class="pregunta">
+            <label for="q3">3. ¿Recomendarías MEXItek a otros?</label>
+            <select name="q3" id="q3" required>
+                <option value="">Selecciona</option>
+                <option value="5">Definitivamente sí</option>
+                <option value="4">Probablemente sí</option>
+                <option value="3">No estoy seguro</option>
+                <option value="2">Probablemente no</option>
+                <option value="1">Definitivamente no</option>
+            </select>
+        </div>
+        <div class="pregunta">
+            <label for="q4">4. ¿Cómo consideras la atención al cliente?</label>
+            <select name="q4" id="q4" required>
+                <option value="">Selecciona</option>
+                <option value="5">Excelente</option>
+                <option value="4">Muy buena</option>
+                <option value="3">Buena</option>
+                <option value="2">Regular</option>
+                <option value="1">Mala</option>
+            </select>
+        </div>
+        <div class="pregunta">
+            <label for="q5">5. ¿La solución técnica fue efectiva?</label>
+            <select name="q5" id="q5" required>
+                <option value="">Selecciona</option>
+                <option value="5">Muy efectiva</option>
+                <option value="4">Efectiva</option>
+                <option value="3">Aceptable</option>
+                <option value="2">Poco efectiva</option>
+                <option value="1">No efectiva</option>
+            </select>
+        </div>
+        <button type="submit">Enviar Encuesta</button>
+    </form>
+
+    <div id="resultado"></div>
+
+    <script>
+        const form = document.getElementById('encuestaForm');
+        const resultado = document.getElementById('resultado');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const datos = new FormData(form);
+            let totalPuntos = 0;
+            for (let value of datos.values()) {
+                totalPuntos += parseInt(value);
+            }
+            const maxPuntos = 5 * 5; // 5 preguntas * 5 puntos max
+            resultado.innerHTML = `
+                    <p>Total de puntos: <strong>${totalPuntos} / ${maxPuntos}</strong></p>
+                    <p class="cara">${totalPuntos >= (maxPuntos * 0.7) ? '😊' : '😞'}</p>
+                `;
+        });
+    </script>
+
+</body>
+</html>

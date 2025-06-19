@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MEXItek | Cotizador con Arreglo</title>
+    <style>
+        :root {
+            --azul-mexitek: #0051ff;
+            --gris-fondo: #f5f7fa;
+            --gris-tabla: #e0e6ed;
+            --texto: #1a1a1a;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--gris-fondo);
+            color: var(--texto);
+        }
+
+        header {
+            background-color: var(--azul-mexitek);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 10px 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        input {
+            width: 120px;
+        }
+
+        button {
+            background-color: var(--azul-mexitek);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #003ecc;
+            }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid var(--gris-tabla);
+            text-align: center;
+        }
+
+        th {
+            background-color: var(--gris-tabla);
+        }
+
+        .total {
+            font-weight: bold;
+            color: var(--azul-mexitek);
+        }
+
+        .total-general {
+            margin-top: 20px;
+            text-align: right;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--azul-mexitek);
+        }
+
+        .resultado {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: var(--gris-tabla);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>MEXItek | Cotizador Profesional con Arreglo</header>
+
+    <div class="container">
+        <label>Elementos a cotizar:</label>
+        <input type="number" id="numItems" value="1" min="1" max="15" />
+        <button onclick="crearTabla()">Generar</button>
+        <button onclick="guardarArreglo()">Guardar Cotización</button>
+
+        <table id="tabla">
+            <thead>
+                <tr>
+                    <th>Producto o Servicio</th>
+                    <th>Precio Unitario ($)</th>
+                    <th>Cantidad</th>
+                    <th>Total ($)</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <div class="total-general">Total General: <span id="totalGeneral">0.00</span></div>
+
+        <div class="resultado" id="resultado"></div>
+    </div>
+
+    <script>
+        const cotizacion = [];
+
+        function crearTabla() {
+            const n = document.getElementById("numItems").value;
+            const tbody = document.querySelector("#tabla tbody");
+            tbody.innerHTML = "";
+
+            for (let i = 0; i < n; i++) {
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                        <td><input type="text" class="producto" placeholder="Ej. Cambio de batería" /></td>
+                        <td><input type="number" class="precio" placeholder="$" oninput="calcularTotal()" /></td>
+                        <td><input type="number" class="cantidad" placeholder="1" oninput="calcularTotal()" /></td>
+                        <td class="total">0.00</td>
+                    `;
+
+                tbody.appendChild(row);
+            }
+        }
+
+        function calcularTotal() {
+            let totalGeneral = 0;
+            const rows = document.querySelectorAll("#tabla tbody tr");
+
+            rows.forEach(row => {
+                const precio = parseFloat(row.querySelector(".precio").value) || 0;
+                const cantidad = parseFloat(row.querySelector(".cantidad").value) || 0;
+                const total = precio * cantidad;
+                row.querySelector(".total").innerText = total.toFixed(2);
+                totalGeneral += total;
+            });
+
+            document.getElementById("totalGeneral").innerText = totalGeneral.toFixed(2);
+        }
+
+        function guardarArreglo() {
+            cotizacion.length = 0;
+            const rows = document.querySelectorAll("#tabla tbody tr");
+            let resumen = "<strong>Resumen de Cotización:</strong><br><ul>";
+
+            rows.forEach(row => {
+                const producto = row.querySelector(".producto").value.trim();
+                const precio = parseFloat(row.querySelector(".precio").value) || 0;
+                const cantidad = parseFloat(row.querySelector(".cantidad").value) || 0;
+                const total = precio * cantidad;
+
+                if (producto !== "") {
+                    cotizacion.push({ producto, precio, cantidad, total });
+                    resumen += `<li>${producto} - $${precio} x ${cantidad} = <strong>$${total.toFixed(2)}</strong></li>`;
+                }
+            });
+
+            resumen += "</ul>";
+            document.getElementById("resultado").innerHTML = resumen;
+        }
+    </script>
+</body>
+</html>

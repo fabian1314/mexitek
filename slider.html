@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MEXItek - Slider Profesional</title>
+    <style>
+        :root {
+            --azul-oscuro: #002B5B;
+            --azul-medio: #0066CC;
+            --azul-claro: #E3F2FD;
+            --gris-claro: #f5f5f5;
+            --gris-oscuro: #333;
+            --blanco: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--gris-claro);
+            color: var(--gris-oscuro);
+        }
+
+        .slider-container {
+            max-width: 1000px;
+            height: 400px;
+            margin: 60px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 1.5s ease-in-out;
+        }
+
+        .slide {
+            flex: 1 0 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: var(--blanco);
+            font-size: 2.2rem;
+            text-align: center;
+            padding: 20px;
+            user-select: none;
+        }
+
+        .slide-1 {
+            background: linear-gradient(120deg, var(--azul-oscuro), var(--azul-medio));
+        }
+
+        .slide-2 {
+            background: linear-gradient(120deg, var(--azul-medio), var(--azul-claro));
+            color: var(--azul-oscuro);
+        }
+
+        .slide-3 {
+            background: linear-gradient(120deg, var(--azul-oscuro), var(--azul-medio));
+        }
+
+        .slide span {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: inherit;
+            opacity: 0.85;
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            margin: 0 5px;
+            background-color: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .nav-btn.active {
+                background-color: var(--azul-medio);
+            }
+
+        @media (max-width: 768px) {
+            .slide {
+                font-size: 1.5rem;
+                padding: 15px;
+            }
+
+                .slide span {
+                    font-size: 1rem;
+                }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slider-container">
+        <div class="slider" id="slider">
+            <div class="slide slide-1">
+                Bienvenido a <strong>MEXItek</strong>
+                <span>Tu aliado en tecnología y reparación</span>
+            </div>
+            <div class="slide slide-2">
+                Soluciones rápidas y confiables
+                <span>Diagnóstico profesional en minutos</span>
+            </div>
+            <div class="slide slide-3">
+                Calidad garantizada
+                <span>Contáctanos y recibe atención personalizada</span>
+            </div>
+        </div>
+
+        <div class="navigation" id="navigation">
+            <span class="nav-btn active" data-index="0"></span>
+            <span class="nav-btn" data-index="1"></span>
+            <span class="nav-btn" data-index="2"></span>
+        </div>
+    </div>
+
+    <script>
+        const slider = document.getElementById('slider');
+        const navBtns = document.querySelectorAll('.nav-btn');
+        let current = 0;
+        const total = navBtns.length;
+
+        function goToSlide(index) {
+            slider.style.transform = `translateX(-${index * 100}%)`;
+            navBtns.forEach(btn => btn.classList.remove('active'));
+            navBtns[index].classList.add('active');
+            current = index;
+        }
+
+        navBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                goToSlide(parseInt(btn.dataset.index));
+            });
+        });
+
+        setInterval(() => {
+            const next = (current + 1) % total;
+            goToSlide(next);
+        }, 7500);
+    </script>
+
+</body>
+</html>
+
+
